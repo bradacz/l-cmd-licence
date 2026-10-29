@@ -348,6 +348,26 @@ application-key enforcement, policy precedence, synchronous mail/billing, the
 unfinished generic queue worker and dashboard accounting limitations. Read these
 before enabling production traffic or scheduled maintenance.
 
+## Administration Gallery
+
+The following views use synthetic demonstration data and template placeholders.
+The displayed license keys belong to the isolated demo, not production customers.
+Open either image to view it at full resolution.
+
+### License Management
+
+Search and filter licenses by status and type, inspect the assigned application
+and customer, and track activation usage against each license's limit.
+
+![License management with filters, synthetic demo customers, license states and activation counts](docs/images/licenses.png)
+
+### Email Template Editor
+
+Customize notification subjects and message bodies using the listed placeholders,
+including reminders for approaching and completed license expiration.
+
+![Email template editor with configurable subjects, message bodies and customer and license placeholders](docs/images/email-templates.png)
+
 ## Documentation
 
 | Guide | Contents |
