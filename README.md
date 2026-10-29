@@ -17,6 +17,13 @@ The system combines a JSON HTTP API, an administration dashboard, customer-accou
 endpoints, a product catalog and Stripe/SMTP integrations. It is built in PHP with
 MariaDB and can run on infrastructure you control.
 
+## Dashboard
+
+![L-CMD License Server dashboard showing license statistics, products, applications and administration navigation](docs/images/dashboard.png)
+
+Administration dashboard with synthetic demonstration data, not production
+customer records. Open the image to view it at full resolution.
+
 ## Who It Is For
 
 - Developers selling desktop software, utilities, plugins and developer tools.
