@@ -11,9 +11,11 @@ if (!is_string($output) || $output === '') {
 }
 
 $files = array_filter(explode("\0", $output));
-// Only this visually reviewed demo image is allowed; replacements need review.
+// Only these visually reviewed demo images are allowed; replacements need review.
 $approvedImages = [
     'docs/images/dashboard.png' => '755d8879fde041d27820822fb0cac7b8edd0f39b38289cfea0a2eb8ccffe3036',
+    'docs/images/licenses.png' => 'e310c9441095652a2e722f83b34a81b9edcbe49fbfdf2882bb4f6a099f21f412',
+    'docs/images/email-templates.png' => 'e979c26f1dc8232a5dab649aa1e9bc86f676a17a675628f32adf048d1c968ca7',
 ];
 $failures = [];
 foreach ($files as $file) {
