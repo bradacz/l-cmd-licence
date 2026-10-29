@@ -1,12 +1,14 @@
 # Correctness and security repair notes
 
-This is the sanitized public source edition of **L-CMD License Server**.
-A production-compatible release was deployed on 2026-10-29. That release retains
-the previous HTTP routing, portal CSRF contract, throttling and authorization
-conventions; this repository's HTTP layer is not its exact deployment snapshot.
-The public edition removes production origins and mail defaults, uses explicit
-environment configuration and includes hosted test/security workflows. It does
-not include the deployment's credentials, customer data or server inventory.
+This document records correctness and security work on **L-CMD License Server**.
+The repository uses explicit environment configuration and hosted test/security
+workflows. Deployment-specific credentials, customer data and server inventory
+are not part of the source tree.
+
+A production-compatible release was deployed on 2026-10-29. It retained the
+deployment's HTTP routing, portal CSRF contract, throttling and authorization
+conventions. This repository is not an exact snapshot of that deployment; upgrades
+still require the compatibility checks described below.
 
 ## Repairs
 

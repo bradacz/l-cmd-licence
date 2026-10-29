@@ -275,6 +275,8 @@ function demo_upsert_tariffs(ProductRepository $products, int $tenantId, int $pr
             $productId,
             (string) $tariff['license_type'],
             (string) $tariff['stripe_price_id'],
+            'license',
+            null,
             (float) $tariff['price'],
             (string) $tariff['currency'],
             (bool) $tariff['is_recommended'],
@@ -403,7 +405,7 @@ if ($existingLicenseCount === 0) {
         ]);
 
         $licenseId = (int) $pdo->lastInsertId();
-        if ((int) $license['current_activations'] > 0) {
+        for ($activationIndex = 0; $activationIndex < (int) $license['current_activations']; $activationIndex++) {
             $pdo->prepare(
                 'INSERT INTO license_activations
                  (license_id, domain, installation_hash, php_version, cms_version, database_type, is_active, activated_at, last_ping_at)
@@ -412,7 +414,7 @@ if ($existingLicenseCount === 0) {
             )->execute([
                 'license_id' => $licenseId,
                 'domain' => 'demo-client',
-                'installation_hash' => 'demo-installation-' . $licenseId,
+                'installation_hash' => 'demo-installation-' . $licenseId . '-' . $activationIndex,
                 'php_version' => '8.2',
                 'cms_version' => '1.0.0',
                 'database_type' => 'mysql',
