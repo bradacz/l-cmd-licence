@@ -11,6 +11,10 @@ if (!is_string($output) || $output === '') {
 }
 
 $files = array_filter(explode("\0", $output));
+// Only this visually reviewed demo image is allowed; replacements need review.
+$approvedImages = [
+    'docs/images/dashboard.png' => '755d8879fde041d27820822fb0cac7b8edd0f39b38289cfea0a2eb8ccffe3036',
+];
 $failures = [];
 foreach ($files as $file) {
     $base = basename($file);
@@ -25,6 +29,12 @@ foreach ($files as $file) {
         continue;
     }
     $content = file_get_contents($file);
+    if (isset($approvedImages[$file])) {
+        if ($content === false || hash('sha256', $content) !== $approvedImages[$file]) {
+            $failures[] = "$file: documentation image changed; review before publication";
+        }
+        continue;
+    }
     if ($content === false || str_contains($content, "\0")) {
         $failures[] = "$file: unexpected binary or unreadable content";
         continue;
