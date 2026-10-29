@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS tenant_activation_tokens (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    tenant_id BIGINT UNSIGNED NOT NULL,
+    tenant_access_key_id BIGINT UNSIGNED NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    token_hash CHAR(64) NOT NULL,
+    status ENUM('pending', 'used', 'expired', 'revoked') NOT NULL DEFAULT 'pending',
+    expires_at TIMESTAMP NOT NULL,
+    used_at TIMESTAMP NULL DEFAULT NULL,
+    created_ip VARCHAR(45) DEFAULT NULL,
+    created_user_agent VARCHAR(500) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (tenant_id) REFERENCES tenants(id) ON DELETE CASCADE,
+    FOREIGN KEY (tenant_access_key_id) REFERENCES tenant_access_keys(id) ON DELETE CASCADE,
+    UNIQUE KEY uniq_tenant_activation_token_hash (token_hash),
+    INDEX idx_tenant_activation_tokens_tenant (tenant_id),
+    INDEX idx_tenant_activation_tokens_access_key (tenant_access_key_id),
+    INDEX idx_tenant_activation_tokens_email (email),
+    INDEX idx_tenant_activation_tokens_status (status),
+    INDEX idx_tenant_activation_tokens_expiry (expires_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
